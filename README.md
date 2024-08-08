@@ -17,9 +17,19 @@ This app displays a list of users fetched from a public API. It shows users' nam
 
  ## Instructions on How to Run the App
  
-- Clone the repository:   https://github.com/ShazinCP/Appscrip_task.git
+- Clone the repository:
+
+  ```bash
+  git clone https://github.com/ShazinCP/Appscrip_task.git
+  
 - Install dependencies:  flutter pub get
 - Run the app:  flutter run
+- Shimmer Loading: Displayed while fetching user data.
+- User List: Displays users' names and email addresses.
+- Pull-to-Refresh: Swipe down to refresh the user list.
+- Search Functionality: Filter users by name using the search bar.
+- User Details: Tap on a user to view detailed information.
+- Error Handling: An error message is displayed if data fetching fails.
 
 ## Assumptions or Decisions Made During Development 
 
