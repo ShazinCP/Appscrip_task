@@ -44,7 +44,9 @@ class DetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: cWhiteColor,
       appBar: AppBar(
+        backgroundColor: cWhiteColor,
         title: const Text(
           "DETAILS",
           style: TextStyle(
@@ -61,6 +63,7 @@ class DetailsScreen extends StatelessWidget {
           child: Consumer<UserProvider>(
             builder: (context, provider, child) {
               if (provider.isLoading) {
+                // display a loading indicator while data is being fetched
                 return const Center(child: CircularProgressIndicator());
               } else {
                 return Column(

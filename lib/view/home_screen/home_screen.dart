@@ -14,7 +14,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final userProvider = Provider.of<UserProvider>(context, listen: false);
     return Scaffold(
+      backgroundColor: cWhiteColor,
       appBar: AppBar(
+        backgroundColor: cWhiteColor,
         title: const Text(
           'USERS',
           style: TextStyle(
@@ -27,7 +29,7 @@ class HomeScreen extends StatelessWidget {
         automaticallyImplyLeading: false,
       ),
       body: RefreshIndicator(
-        onRefresh: () => userProvider.fetchUsers(),
+        onRefresh: () => userProvider.fetchUsers(), // refresh action to fetch users
         color: cPrimaryColor,
         child: Column(
           children: [
@@ -35,7 +37,7 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: TextField(
-                onChanged: userProvider.setSearchQuery,
+                onChanged: userProvider.setSearchQuery, // updating search query
                 controller: userProvider.searchController,
                 style: const TextStyle(color: cBlackColor),
                 cursorColor: cPrimaryColor,
@@ -65,8 +67,8 @@ class HomeScreen extends StatelessWidget {
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {
-                        userProvider.searchController.clear();
-                        userProvider.setSearchQuery("");
+                        userProvider.searchController.clear(); // clearing search input
+                        userProvider.setSearchQuery(""); // resetting search query
                       },
                       icon: const Icon(CupertinoIcons.clear),
                       iconSize: 19,
@@ -78,12 +80,13 @@ class HomeScreen extends StatelessWidget {
             Consumer<UserProvider>(
               builder: (context, provider, child) {
                 if (provider.isLoading) {
-                  return buildListShimmerEffect();
+                  return buildListShimmerEffect(); // display shimmer effect while loading
                 } else if (provider.errorMessage != null) {
-                  return Center(child: Text('Error: ${provider.errorMessage}'));
+                  return Center(child: Text('Error: ${provider.errorMessage}')); // display error mesage
                 } else if (provider.userList == null) {
-                  return const Center(child: Text('No data available'));
+                  return const Center(child: Text('No data available')); // display message if no data
                 } else {
+                 // filter user list based on search query
                   final userList = provider.userList!
                       .where((user) => user.name
                           .toLowerCase()
@@ -123,6 +126,7 @@ class HomeScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10)),
                               child: ListTile(
                                 leading: const CircleAvatar(
+                                  backgroundColor: cWhiteColor,
                                   child: Icon(
                                     Icons.person_2_rounded,
                                     color: cGreyColor,
